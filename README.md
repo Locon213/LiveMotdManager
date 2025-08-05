@@ -1,7 +1,7 @@
 # LiveMotdManager
 
 LiveMotdManager is a multi-platform Minecraft plugin that keeps your server list message dynamic.
-It supports Spigot/Paper/Purpur/Folia servers and BungeeCord/Waterfall (1.16+) or Velocity proxies.
+It supports Spigot/Paper/Purpur/Folia servers from 1.16 through 1.21 and BungeeCord/Waterfall (1.16+) or Velocity proxies.
 The MOTD can react to time of day, player counts, TPS, real world weather and Discord activity.
 
 ## Building
@@ -36,8 +36,9 @@ See `config.yml` for an example configuration with multiple templates and integr
 
 ## Weather
 
-Uses [open-meteo.com](https://open-meteo.com/) APIs with no key required. The plugin performs an
-initial API test on startup and logs the result to the console.
+Uses the [OpenWeather](https://openweathermap.org/) API. An API key is required and must be
+specified in `weather.api-key` in the configuration. The plugin performs an initial API test on
+startup and logs the result to the console.
 
 ## Discord
 
