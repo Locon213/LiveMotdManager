@@ -1,7 +1,7 @@
 package com.livemotdmanager.core;
 
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,9 +14,10 @@ public final class ConfigLoader {
     private ConfigLoader() {}
 
     public static MotdConfig load(InputStream in) {
-        Yaml yaml = new Yaml(new Constructor(MotdConfig.class));
+        LoaderOptions options = new LoaderOptions();
+        Yaml yaml = new Yaml(options);
         try (InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8)) {
-            MotdConfig cfg = yaml.load(reader);
+            MotdConfig cfg = yaml.loadAs(reader, MotdConfig.class);
             if (cfg == null) cfg = new MotdConfig();
             return cfg;
         } catch (Exception e) {

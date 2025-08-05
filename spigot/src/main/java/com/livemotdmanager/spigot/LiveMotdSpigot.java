@@ -102,7 +102,15 @@ public class LiveMotdSpigot extends JavaPlugin implements Listener, TabExecutor,
     public int maxPlayers() { return Bukkit.getMaxPlayers(); }
 
     @Override
-    public double tps() { return Bukkit.getServer().getTPS()[0]; }
+    public double tps() {
+        try {
+            var method = Bukkit.getServer().getClass().getMethod("getTPS");
+            double[] tps = (double[]) method.invoke(Bukkit.getServer());
+            return tps.length > 0 ? tps[0] : 20.0;
+        } catch (Exception e) {
+            return 20.0;
+        }
+    }
 
     // Commands
     @Override
