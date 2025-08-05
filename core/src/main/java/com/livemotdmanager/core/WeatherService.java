@@ -4,11 +4,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -32,7 +33,10 @@ public class WeatherService {
 
     public void start() {
         if (!enabled) return;
-        scheduler.scheduleAtFixedRate(this::update, 0, updateIntervalMinutes, TimeUnit.MINUTES);
+        // Initial fetch for startup verification
+        update();
+        System.out.println("[LiveMotdManager] Weather API test: " + (cached.isEmpty() ? "unavailable" : cached));
+        scheduler.scheduleAtFixedRate(this::update, updateIntervalMinutes, updateIntervalMinutes, TimeUnit.MINUTES);
     }
 
     public void stop() {
@@ -46,8 +50,9 @@ public class WeatherService {
     private void update() {
         if (!enabled || city == null || city.isEmpty()) return;
         try {
-            // Geocode city
-            String geocodeUrl = String.format("https://geocoding-api.open-meteo.com/v1/search?count=1&name=%s", city);
+            // Geocode city (encode to handle spaces and special characters)
+            String encodedCity = URLEncoder.encode(city, StandardCharsets.UTF_8);
+            String geocodeUrl = String.format("https://geocoding-api.open-meteo.com/v1/search?count=1&name=%s", encodedCity);
             HttpRequest geoReq = HttpRequest.newBuilder().uri(URI.create(geocodeUrl)).timeout(Duration.ofSeconds(10)).build();
             HttpResponse<String> geoResp = http.send(geoReq, HttpResponse.BodyHandlers.ofString());
             JsonObject geoJson = JsonParser.parseString(geoResp.body()).getAsJsonObject();

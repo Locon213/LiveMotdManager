@@ -3,14 +3,14 @@
   <parent>
     <groupId>com.livemotdmanager</groupId>
     <artifactId>livemotdmanager-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
   <artifactId>velocity</artifactId>
   <dependencies>
     <dependency>
       <groupId>com.livemotdmanager</groupId>
       <artifactId>core</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>com.velocitypowered</groupId>
@@ -20,6 +20,7 @@
     </dependency>
   </dependencies>
   <build>
+    <finalName>livemotdmanager-velocity-${project.version}</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

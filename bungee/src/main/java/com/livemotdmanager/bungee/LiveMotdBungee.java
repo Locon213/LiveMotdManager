@@ -107,10 +107,16 @@ public class LiveMotdBungee extends Plugin implements Listener, ServerInfoProvid
         @Override
         public void execute(CommandSender sender, String[] args) {
             if (args.length == 0) {
-                sender.sendMessage(new TextComponent("/motd reload|set|info"));
+                sender.sendMessage(new TextComponent("/motd help"));
                 return;
             }
             switch (args[0].toLowerCase()) {
+                case "help":
+                    sender.sendMessage(new TextComponent("/motd reload - reload configuration"));
+                    sender.sendMessage(new TextComponent("/motd set <text> - set temporary MOTD"));
+                    sender.sendMessage(new TextComponent("/motd info - show debug info"));
+                    sender.sendMessage(new TextComponent("/motd force <template|off> - force a template"));
+                    break;
                 case "reload":
                     loadConfig();
                     sender.sendMessage(new TextComponent("Config reloaded."));
@@ -129,8 +135,21 @@ public class LiveMotdBungee extends Plugin implements Listener, ServerInfoProvid
                     sender.sendMessage(new TextComponent("Weather: " + weather.getCachedWeather()));
                     sender.sendMessage(new TextComponent("Discord online: " + discord.getOnlineUsers()));
                     break;
+                case "force":
+                    if (args.length < 2) {
+                        sender.sendMessage(new TextComponent("Usage: /motd force <template|off>"));
+                        break;
+                    }
+                    if (args[1].equalsIgnoreCase("off")) {
+                        manager.clearForcedTemplate();
+                        sender.sendMessage(new TextComponent("Forced template cleared."));
+                    } else {
+                        manager.setForcedTemplate(args[1]);
+                        sender.sendMessage(new TextComponent("Forced template set to " + args[1] + "."));
+                    }
+                    break;
                 default:
-                    sender.sendMessage(new TextComponent("Unknown subcommand."));
+                    sender.sendMessage(new TextComponent("Unknown subcommand. Use /motd help"));
             }
         }
     }
