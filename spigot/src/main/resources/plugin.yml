@@ -1,0 +1,9 @@
+name: LiveMotdManager
+main: com.livemotdmanager.spigot.LiveMotdSpigot
+version: 1.0
+api-version: 1.16
+commands:
+  motd:
+    description: Manage MOTD
+    usage: /motd
+    permission: livemotdmanager.command

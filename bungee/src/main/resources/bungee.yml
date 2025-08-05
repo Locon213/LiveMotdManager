@@ -1,0 +1,7 @@
+name: LiveMotdManager
+main: com.livemotdmanager.bungee.LiveMotdBungee
+version: 1.0
+commands:
+  motd:
+    description: Manage MOTD
+    permission: livemotdmanager.command

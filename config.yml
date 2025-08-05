@@ -1,0 +1,25 @@
+motd:
+  - when: "day"
+    text: "<gradient:#6a11cb:#2575fc>Good morning! ☀️</gradient>"
+  - when: "night"
+    text: "<gradient:#232526:#414345>Good night, miners! 🌙</gradient>"
+  - when: "players > 40"
+    text: "<rainbow>Wow! 40+ players online — party time!</rainbow>"
+  - when: "tps < 18"
+    text: "<red>Server is lagging — please be patient...</red>"
+  - when: "event"
+    text: "<gold>Special event today — /warp event</gold>"
+  - when: "default"
+    text: "<blue>Welcome to ChaosCraftMHX — %online%/%maxplayers% playing! Weather in Riga: %weather_riga%</blue>"
+
+weather:
+  enable: true
+  city: "Riga"
+  update-interval-minutes: 10
+
+discord:
+  enable: true
+  placeholder: "%discord_online%"
+
+cache:
+  update-interval-seconds: 5

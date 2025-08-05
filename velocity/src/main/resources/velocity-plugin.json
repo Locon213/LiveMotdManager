@@ -1,0 +1,6 @@
+{
+  "id": "livemotdmanager",
+  "name": "LiveMotdManager",
+  "version": "1.0",
+  "main": "com.livemotdmanager.velocity.LiveMotdVelocity"
+}
