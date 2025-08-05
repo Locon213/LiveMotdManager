@@ -1,1 +1,1 @@
-# LiveMotdManager
+#LiveMotdManager - универсальный динамический MOTD
