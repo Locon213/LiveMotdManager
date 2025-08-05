@@ -1,6 +1,6 @@
 # LiveMotdManager
 
-LiveMotdManager is a multi-platform Minecraft plugin providing a dynamic server list MOTD. It supports Spigot/Paper/Purpur/Folia servers and BungeeCord/Waterfall/Velocity proxies. The plugin changes MOTD based on time, player count, TPS and more. Weather and Discord integrations are included.
+LiveMotdManager is a multi-platform Minecraft plugin providing a dynamic server list MOTD. It supports Spigot/Paper/Purpur/Folia servers and BungeeCord/Waterfall (1.16+) / Velocity proxies. The plugin changes MOTD based on time, player count, TPS and more. Weather and Discord integrations are included.
 
 ## Building
 
