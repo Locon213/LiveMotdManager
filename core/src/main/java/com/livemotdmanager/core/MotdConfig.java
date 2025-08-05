@@ -20,6 +20,7 @@ public class MotdConfig {
     public static class WeatherSettings {
         public boolean enable = true;
         public String city = "";
+        public String apiKey = "";
         public int updateIntervalMinutes = 10;
     }
 
