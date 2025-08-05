@@ -100,10 +100,16 @@ public class LiveMotdVelocity implements ServerInfoProvider {
         public void execute(Invocation invocation) {
             String[] args = invocation.arguments();
             if (args.length == 0) {
-                invocation.source().sendMessage(Component.text("/motd reload|set|info"));
+                invocation.source().sendMessage(Component.text("/motd help"));
                 return;
             }
             switch (args[0].toLowerCase()) {
+                case "help":
+                    invocation.source().sendMessage(Component.text("/motd reload - reload configuration"));
+                    invocation.source().sendMessage(Component.text("/motd set <text> - set temporary MOTD"));
+                    invocation.source().sendMessage(Component.text("/motd info - show debug info"));
+                    invocation.source().sendMessage(Component.text("/motd force <template|off> - force a template"));
+                    break;
                 case "reload":
                     loadConfig();
                     invocation.source().sendMessage(Component.text("Config reloaded."));
@@ -122,8 +128,21 @@ public class LiveMotdVelocity implements ServerInfoProvider {
                     invocation.source().sendMessage(Component.text("Weather: " + weather.getCachedWeather()));
                     invocation.source().sendMessage(Component.text("Discord online: " + discord.getOnlineUsers()));
                     break;
+                case "force":
+                    if (args.length < 2) {
+                        invocation.source().sendMessage(Component.text("Usage: /motd force <template|off>"));
+                        break;
+                    }
+                    if (args[1].equalsIgnoreCase("off")) {
+                        manager.clearForcedTemplate();
+                        invocation.source().sendMessage(Component.text("Forced template cleared."));
+                    } else {
+                        manager.setForcedTemplate(args[1]);
+                        invocation.source().sendMessage(Component.text("Forced template set to " + args[1] + "."));
+                    }
+                    break;
                 default:
-                    invocation.source().sendMessage(Component.text("Unknown subcommand."));
+                    invocation.source().sendMessage(Component.text("Unknown subcommand. Use /motd help"));
             }
         }
     }

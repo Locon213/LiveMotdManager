@@ -24,6 +24,7 @@ public class MotdManager {
     private String currentTemplate = "";
     private final long cacheIntervalMs;
     private String temporaryMotd = null;
+    private String forcedTemplate = null;
 
     public MotdManager(MotdConfig config, WeatherService weather, DiscordService discord, ServerInfoProvider infoProvider) {
         this.config = config;
@@ -47,6 +48,15 @@ public class MotdManager {
         long now = System.currentTimeMillis();
         if (temporaryMotd != null) {
             return MiniMessage.miniMessage().deserialize(applyPlaceholders(temporaryMotd, ctx));
+        }
+        if (forcedTemplate != null) {
+            for (MotdConfig.MotdRule rule : config.motd) {
+                if (rule.when.equalsIgnoreCase(forcedTemplate)) {
+                    currentTemplate = rule.when;
+                    String txt = applyPlaceholders(rule.text, ctx);
+                    return MiniMessage.miniMessage().deserialize(txt);
+                }
+            }
         }
         if (now - lastUpdate > cacheIntervalMs) {
             rebuild(ctx);
@@ -76,6 +86,14 @@ public class MotdManager {
             out = prov.apply(out, ctx);
         }
         return out;
+    }
+
+    public void setForcedTemplate(String when) {
+        this.forcedTemplate = when;
+    }
+
+    public void clearForcedTemplate() {
+        this.forcedTemplate = null;
     }
 
     private String defaultPlaceholders(String text, MotdContext ctx) {

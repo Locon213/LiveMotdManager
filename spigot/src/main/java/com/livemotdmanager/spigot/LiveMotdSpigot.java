@@ -116,10 +116,16 @@ public class LiveMotdSpigot extends JavaPlugin implements Listener, TabExecutor,
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage("/motd reload|set|info");
+            sender.sendMessage("/motd help");
             return true;
         }
         switch (args[0].toLowerCase()) {
+            case "help":
+                sender.sendMessage("/motd reload - reload configuration");
+                sender.sendMessage("/motd set <text> - set temporary MOTD");
+                sender.sendMessage("/motd info - show debug info");
+                sender.sendMessage("/motd force <template|off> - force a template");
+                break;
             case "reload":
                 loadConfig();
                 sender.sendMessage("MOTD config reloaded.");
@@ -138,15 +144,28 @@ public class LiveMotdSpigot extends JavaPlugin implements Listener, TabExecutor,
                 sender.sendMessage("Weather: " + weather.getCachedWeather());
                 sender.sendMessage("Discord online: " + discord.getOnlineUsers());
                 break;
+            case "force":
+                if (args.length < 2) {
+                    sender.sendMessage("Usage: /motd force <template|off>");
+                    break;
+                }
+                if (args[1].equalsIgnoreCase("off")) {
+                    manager.clearForcedTemplate();
+                    sender.sendMessage("Forced template cleared.");
+                } else {
+                    manager.setForcedTemplate(args[1]);
+                    sender.sendMessage("Forced template set to " + args[1] + ".");
+                }
+                break;
             default:
-                sender.sendMessage("Unknown subcommand.");
+                sender.sendMessage("Unknown subcommand. Use /motd help");
         }
         return true;
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (args.length == 1) return Arrays.asList("reload", "set", "info");
+        if (args.length == 1) return Arrays.asList("help", "reload", "set", "info", "force");
         return List.of();
     }
 }
