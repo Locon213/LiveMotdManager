@@ -44,7 +44,7 @@ initial API test on startup and logs the result to the console.
 Optional integration with DiscordSRV. Placeholder `%discord_online%` shows number of connected
 Discord users.
 
-Additional documentation is available in the [wiki]([https://github.com/Locon213/LiveMotdManager/wiki]).
+Additional documentation is available in the [wiki]([wiki/Home.md]).
 
 ## License
 
