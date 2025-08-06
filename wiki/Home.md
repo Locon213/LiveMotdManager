@@ -5,7 +5,7 @@ Welcome to the LiveMotdManager wiki. This documentation expands on configuration
 ## Features
 
 - Dynamic MOTD templates based on time, player count and TPS
-- Real world weather integration via [open-meteo.com](https://open-meteo.com/)
+- Real world weather integration via [openweathermap.org](https://openweathermap.org/)
 - DiscordSRV integration
 - Works on Spigot/Paper/Folia servers and BungeeCord/Waterfall/Velocity proxies
 
@@ -18,7 +18,8 @@ and the MiniMessage formatted `text` to display.
 
 Set `weather.enable` to `true` and specify `city`. Use `%weather_motd%` or `%weather_city%`
 placeholders in your templates. The `weather.update-interval-minutes` option controls how often
-new data is fetched (default 10 minutes).
+new data is fetched (default 10 minutes).NEED API KEY.
+
 
 ### Discord
 
