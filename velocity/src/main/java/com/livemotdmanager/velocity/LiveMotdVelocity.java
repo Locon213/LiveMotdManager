@@ -83,7 +83,7 @@ public class LiveMotdVelocity implements ServerInfoProvider {
     @Subscribe
     public void onPing(ProxyPingEvent event) {
         Component comp = manager.provide();
-        event.getPing().asBuilder().description(comp).build();
+        event.setPing(event.getPing().asBuilder().description(comp).build());
     }
 
     @Override

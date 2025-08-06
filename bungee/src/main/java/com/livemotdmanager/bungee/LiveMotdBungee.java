@@ -87,7 +87,6 @@ public class LiveMotdBungee extends Plugin implements Listener, ServerInfoProvid
     public void onPing(ProxyPingEvent event) {
         Component comp = manager.provide();
         String legacy = LegacyComponentSerializer.legacySection().serialize(comp);
-        // TextComponent.fromLegacyText returns an array; wrap in a single component
         event.getResponse().setDescriptionComponent(new TextComponent(TextComponent.fromLegacyText(legacy)));
     }
 
