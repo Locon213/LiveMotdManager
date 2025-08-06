@@ -45,6 +45,12 @@ startup and logs the result to the console.
 Optional integration with DiscordSRV. Placeholder `%discord_online%` shows number of connected
 Discord users.
 
+## Updates
+
+On startup the plugin contacts GitHub to see if a newer release is available. If one is found a
+message with the version number and download link is printed to the console. Releases are
+published at [github.com/Locon213/LiveMotdManager/releases](https://github.com/Locon213/LiveMotdManager/releases).
+
 Additional documentation is available in the [wiki](wiki/Home.md).
 
 ## License
