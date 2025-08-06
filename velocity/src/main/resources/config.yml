@@ -10,7 +10,7 @@ motd:
   - when: "event"
     text: "<gold>Special event today — /warp event</gold>"
   - when: "default"
-    text: "<blue>Welcome to ChaosCraftMHX — %online%/%maxplayers% playing! Weather in Riga: %weather_riga%</blue>"
+    text: "<blue>Welcome to ChaosCraftMHX — %online%/%maxplayers% playing! Weather in Riga: %weather_motd%</blue>"
 
 weather:
   enable: true

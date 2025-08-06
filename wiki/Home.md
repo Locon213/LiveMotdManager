@@ -16,8 +16,9 @@ and the MiniMessage formatted `text` to display.
 
 ### Weather
 
-Set `weather.enable` to `true` and specify `city`. Use `%weather_city%` or `%weather_<city>%`
-placeholders in your templates.
+Set `weather.enable` to `true` and specify `city`. Use `%weather_motd%` or `%weather_city%`
+placeholders in your templates. The `weather.update-interval-minutes` option controls how often
+new data is fetched (default 10 minutes).
 
 ### Discord
 
