@@ -102,7 +102,7 @@ public class MotdManager {
         out = out.replace("%maxplayers%", Integer.toString(ctx.max));
         out = out.replace("%tps%", String.format(Locale.US, "%.2f", ctx.tps));
         if (ctx.weather != null) {
-            out = out.replace("%weather_" + config.weather.city.toLowerCase(Locale.ROOT) + "%", ctx.weather);
+            out = out.replace("%weather_motd%", ctx.weather);
             out = out.replace("%weather_city%", ctx.weather);
         }
         out = out.replace("%discord_online%", Integer.toString(ctx.discordOnline));
