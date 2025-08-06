@@ -20,6 +20,7 @@ Set `weather.enable` to `true` and specify `city`. Use `%weather_motd%` or `%wea
 placeholders in your templates. The `weather.update-interval-minutes` option controls how often
 new data is fetched (default 10 minutes).NEED API KEY.
 
+
 ### Discord
 
 If DiscordSRV is installed you can show online Discord users with `%discord_online%`.
