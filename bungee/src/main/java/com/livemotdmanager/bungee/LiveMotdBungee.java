@@ -37,6 +37,7 @@ public class LiveMotdBungee extends Plugin implements Listener, ServerInfoProvid
         ProxyServer.getInstance().getPluginManager().registerListener(this, this);
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new MotdCommand());
         setupLogger();
+        UpdateChecker.checkAsync(getDescription().getVersion(), getLogger());
     }
 
     @Override

@@ -18,8 +18,8 @@ and the MiniMessage formatted `text` to display.
 
 Set `weather.enable` to `true` and specify `city`. Use `%weather_motd%` or `%weather_city%`
 placeholders in your templates. The `weather.update-interval-minutes` option controls how often
-new data is fetched (default 10 minutes).NEED API KEY.
-
+new data is fetched (default 10 minutes). An API key from OpenWeather is required and must be
+placed in `weather.api-key`.
 
 ### Discord
 
@@ -33,6 +33,12 @@ Run `/motd help` in game for the complete list.
 - `/motd set <text>` – set a temporary MOTD until restart
 - `/motd info` – show debug information
 - `/motd force <template|off>` – force a configured template
+
+## Updates
+
+The plugin checks for new releases on GitHub when it starts. If a newer version is available you
+will see a console message with a download link. Releases are available at
+[github.com/Locon213/LiveMotdManager/releases](https://github.com/Locon213/LiveMotdManager/releases).
 
 ## Building
 

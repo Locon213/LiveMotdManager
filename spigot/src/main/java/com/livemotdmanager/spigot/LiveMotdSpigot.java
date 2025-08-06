@@ -40,6 +40,7 @@ public class LiveMotdSpigot extends JavaPlugin implements Listener, TabExecutor,
         getServer().getPluginManager().registerEvents(this, this);
         getCommand("motd").setExecutor(this);
         setupLogger();
+        UpdateChecker.checkAsync(getDescription().getVersion(), getLogger());
     }
 
     @Override

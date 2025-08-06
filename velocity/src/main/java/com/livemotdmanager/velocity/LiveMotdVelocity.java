@@ -40,6 +40,7 @@ public class LiveMotdVelocity implements ServerInfoProvider {
         loadConfig();
         setupLogger();
         server.getCommandManager().register(server.getCommandManager().metaBuilder("motd").build(), new MotdCommand());
+        UpdateChecker.checkAsync(LiveMotdVelocity.class.getAnnotation(Plugin.class).version(), Logger.getLogger("LiveMotdManager"));
     }
 
     private void setupLogger() {
